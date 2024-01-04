@@ -1,12 +1,14 @@
 import streamlit as st
 import pandas as pd
 
-if upload_file is not None:
+uploaded_file = st.file_uploader("please upload access log file")
+
+if uploaded_file is not None:
     df = pd.read_csv(
-            upload_file,
+            uploaded_file,
             sep=r'\s(?=(?:[^"]*"[^"]*")*[^"]*$)(?![^\[]*\])',
             engine='python',
-            na_values='_',
+            na_values='-',
             header=None
             )
     st.markdown('### access log (head 5lines)')
